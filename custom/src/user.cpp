@@ -9,16 +9,19 @@ void runAutonomous() {
   int auton_selected = 3;
   switch(auton_selected) {
     case 1:
-      exampleAuton();
+      rightMatchload();
       break;
     case 2:
-      exampleAuton2();
+      linearTuning();
       break;  
     case 3:
+      turnTuning();
       break;
     case 4:
+      odomExample();
       break; 
     case 5:
+      boomerangTest();
       break;
     case 6:
       break;
@@ -68,29 +71,27 @@ void intakeC(){
     }
 }
 
-void wingC(){
+void pistonCs(){
   /*
-    l1:                r1:
-      top goal            intake
-    l2:                r2:
-      middle goal         outtake
+    up:                   X:
+      scraper up            wing up
+    down:                 B:
+      scraper down          wing down
 
     notes:
       middle goal scoring at 75% speed
   */
-}
+  if (button_up_arrow) {
+    scraper.set(false);
+  } else if (button_down_arrow) {
+    scraper.set(true);
+  }
 
-
-void scraperC(){
-  /*
-    l1:                r1:
-      top goal            intake
-    l2:                r2:
-      middle goal         outtake
-
-    notes:
-      middle goal scoring at 75% speed
-  */
+  if (button_x) {
+    wing.set(true);
+  } else if (button_b) {
+    wing.set(false);
+  }
 }
 
 
@@ -125,8 +126,7 @@ void runDriver() {
     //driveChassis((ch3-ch1) * 0.12, (ch3+ch1) * 0.12);
 
     intakeC();
-    wingC();
-    scraperC();
+    pistonCs();
 
     wait(10, msec); 
   }

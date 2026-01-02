@@ -40,22 +40,27 @@ motor first_stage = motor(PORT20, ratio6_1);
 motor second_stage = motor(PORT10, ratio6_1,true);
 motor_group intake(first_stage,second_stage);
 motor scoring = motor(PORT19, ratio18_1);
-digital_out claw = digital_out(Brain.ThreeWirePort.F);
-digital_out rush_arm = digital_out(Brain.ThreeWirePort.G);
+
+
+digital_out wing = digital_out(Brain.ThreeWirePort.F);
+digital_out scraper = digital_out(Brain.ThreeWirePort.G);
+
+
 optical optical_sensor = optical(PORT18);
 distance intake_distance = distance(PORT20);
-distance clamp_distance = distance(PORT12);
-digital_out mogo_mech = digital_out(Brain.ThreeWirePort.E);
+//distance clamp_distance = distance(PORT12);
+
+//digital_out mogo_mech = digital_out(Brain.ThreeWirePort.E);
 
 // ============================================================================
 // USER-CONFIGURABLE PARAMETERS (CHANGE BEFORE USING THIS TEMPLATE)
 // ============================================================================
 
 // Distance between the middles of the left and right wheels of the drive (in inches)
-double distance_between_wheels = 12.3;
+double distance_between_wheels = 13;
 
 // motor to wheel gear ratio * wheel diameter (in inches) * pi
-double wheel_distance_in = (36.0 / 48.0) * 3.17 * M_PI;
+double wheel_distance_in = (48.0 / 72.0) * 4 * M_PI;
 
 // PID Constants for movement
 // distance_* : Linear PID for straight driving

@@ -1,5 +1,7 @@
 // Format: returnType functionName();
 
-void exampleAuton();
-void exampleAuton2();
-void redGoalRush();
+void linearTuning();
+void turnTuning();
+void odomExample();
+void boomerangTest();
+void rightMatchload();
