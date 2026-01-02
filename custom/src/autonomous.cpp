@@ -68,7 +68,7 @@ void scoreHigh(){
   scoring.spin(fwd,12,volt);
 }
 
-void scoreLow(){
+void scoreMid(){
   intake.spin(fwd,-6,volt);
   scoring.spin(fwd,-12,volt);
   wait(200,msec);
@@ -85,14 +85,70 @@ void pauseIntake(){
 
 void rightMatchload(){
   intakeBlocks();                                       //start intake
-  boomerang(4,24,1,90,.3,3000);                         //move to collect 3 blocks
+  boomerang(5.5,24,1,70,.3,3000);                       //move to collect 3 blocks
   scraper.set(true);                                    //open scraper
-  boomerang(28,0,1,180,.3,3000);                        //move to matchloader
+  boomerang(29,0,1,180,.3,3000);                        //move to matchloader
   
   wait(3,sec);
 
-  driveTo(6,3000);
-  wait(1,sec);
-  moveToPoint(28,24,-1,3000);
-  scoreHigh();
+  correct_angle = 180;
+  driveTo(6,3000,true,6);                               //move forward to unload matchloader
+  wait(1,sec);                                          //wait for blocks
+  moveToPoint(29,24,-1,3000);                           //move to long goal
+  scraper.set(false);                                   //bring scraper up
+  scoreHigh();                                          //score in long goal
+  wait(2,sec);                                          //timer for scoring
+  pauseIntake();                                        //stop intaking
+
+  wait(3,sec);
+
+  moveToPoint(21.5,16.223,1,3000);                      //move to set up for wing
+  wing.set(true);                                       //open wings
+  moveToPoint(21.5,45,-1,3000);                         //move backwards to push for control bonus
+  stopChassis(hold);                                    //hold position
+}
+
+
+void left4_5(){
+  intakeBlocks();                                       //start intake
+  boomerang(-1,31,1,-50,.3,3000,false);                 //move to collect 3 blocks
+  scraper.set(true);                                    //open scraper to trap blocks
+  wait(200,msec);                                       //wait .2s
+  scraper.set(false);                                   //close scraper
+  boomerang(-25,51,1,-80,.3,3000,false);                //move to matchloader
+  scraper.set(true);                                    //open scraper to trap blocks
+  wait(200,msec);                                       //wait .2s
+  scraper.set(false);                                   //close scraper
+  
+  wait(3,sec);
+
+  correct_angle = -80;                                  //heading for pid straight
+  driveTo(3,3000,true,6);                               //move forward to unload matchloader
+  boomerang(5,44,-1,-135,3000,true);                    //move to mid goal
+  scoreMid();                                           //score in mid goal
+  wait(1,sec);                                          //timer for scoring
+  intakeBlocks();                                       //go back to intake mode
+
+  wait(3,sec);
+
+  scraper.set(true);                                    //open scraper
+  boomerang(-30,0,1,180,.3,3000);                       //move to matchloader
+  correct_angle = 180;                                  //heading for matchload
+  driveTo(6,3000);                                      //move forward to unload matchloader
+  wait(1,sec);                                          //wait for blocks
+
+  wait(3,sec);
+
+  moveToPoint(-30,24,-1,3000);                          //move to long goal
+  scraper.set(false);                                   //bring scraper up
+  scoreHigh();                                          //score in long goal
+  wait(2,sec);                                          //timer for scoring
+  pauseIntake();                                        //stop intaking
+
+  wait(3,sec);
+
+  moveToPoint(21.5,16.223,1,3000);                      //move to set up for wing
+  wing.set(true);                                       //open wings
+  moveToPoint(21.5,45,-1,3000);                         //move backwards to push for control bonus
+  stopChassis(hold);                                    //hold position
 }
