@@ -33,7 +33,6 @@ void turnTuning() {
   turnToAngle(150, 2000);
   turnToAngle(160, 2000);
   turnToAngle(165, 2000);
-  wait(5,sec);
   turnToAngle(0, 2000);
 }
 
@@ -60,25 +59,30 @@ Start of Actual Autons
 
 void intakeBlocks(){
   intake.spin(fwd,12,volt);
-  scoring.spin(fwd,5,volt);
+  second_stage.spin(fwd,1,volt);
+  scoringM.spin(fwd,1,volt);
 }
 
 void scoreHigh(){
   intake.spin(fwd,12,volt);
-  scoring.spin(fwd,12,volt);
+  second_stage.spin(fwd,12,volt);
+  scoringM.spin(fwd,12,volt);
 }
 
 void scoreMid(){
   intake.spin(fwd,-6,volt);
-  scoring.spin(fwd,-12,volt);
+  second_stage.spin(fwd,-6,volt);
+  scoringM.spin(fwd,11,volt);
   wait(200,msec);
   intake.spin(fwd,12,volt);
-  scoring.spin(fwd,-12,volt);
+  second_stage.spin(fwd,1,volt);
+  scoringM.spin(fwd,1,volt);
 }
 
 void pauseIntake(){
   intake.stop();
-  scoring.stop();
+  second_stage.stop();
+  scoringM.stop();
 }
 
 
@@ -87,14 +91,14 @@ void rightMatchload(){
   intakeBlocks();                                       //start intake
   boomerang(5.5,24,1,70,.3,3000);                       //move to collect 3 blocks
   scraper.set(true);                                    //open scraper
-  boomerang(29,0,1,180,.3,3000);                        //move to matchloader
+  boomerang(37.5,-20,1,180,.3,3000);                        //move to matchloader
   
-  wait(3,sec);
+  //wait(3,sec);
 
   correct_angle = 180;
   driveTo(6,3000,true,6);                               //move forward to unload matchloader
   wait(1,sec);                                          //wait for blocks
-  moveToPoint(29,24,-1,3000);                           //move to long goal
+  moveToPoint(37.5,10,-1,3000);                           //move to long goal
   scraper.set(false);                                   //bring scraper up
   scoreHigh();                                          //score in long goal
   wait(2,sec);                                          //timer for scoring
@@ -102,9 +106,9 @@ void rightMatchload(){
 
   wait(3,sec);
 
-  moveToPoint(21.5,16.223,1,3000);                      //move to set up for wing
+  moveToPoint(31.5,16.223,1,3000);                      //move to set up for wing
   wing.set(true);                                       //open wings
-  moveToPoint(21.5,45,-1,3000);                         //move backwards to push for control bonus
+  moveToPoint(31.5,45,-1,3000);                         //move backwards to push for control bonus
   stopChassis(hold);                                    //hold position
 }
 

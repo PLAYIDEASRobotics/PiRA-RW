@@ -4,10 +4,12 @@
 #include "../custom/include/autonomous.h"
 
 // Modify autonomous, driver, or pre-auton code below
-
+int auton_selected = 0;
 void runAutonomous() {
-  int auton_selected = 3;
   switch(auton_selected) {
+    case 0:
+      rightMatchload();
+      break;
     case 1:
       rightMatchload();
       break;
@@ -55,19 +57,24 @@ void intakeC(){
   if (r1)
     {
       intake.spin(fwd,12,volt);
-      scoring.spin(fwd,5,volt);
+      second_stage.spin(fwd,1,volt);
+      scoringM.spin(fwd,1,volt);
     } else if (r2) {
       intake.spin(fwd,-12,volt);
-      scoring.spin(fwd,-12,volt);
+      second_stage.spin(fwd,-12,volt);
+      scoringM.spin(fwd,-12,volt);
     } else if (l1) {
       intake.spin(fwd,12,volt);
-      scoring.spin(fwd,12,volt);
+      second_stage.spin(fwd,12,volt);
+      scoringM.spin(fwd,12,volt);
     } else if (l2) {
       intake.spin(fwd,12,volt);
-      scoring.spin(fwd,-8,volt);
+      second_stage.spin(fwd,12,volt);
+      scoringM.spin(fwd,-8,volt);
     } else {
       intake.stop();
-      scoring.stop();
+      second_stage.stop();
+      scoringM.stop();
     }
 }
 
@@ -87,9 +94,9 @@ void pistonCs(){
     scraper.set(true);
   }
 
-  if (button_x) {
+  if (button_b) {
     wing.set(true);
-  } else if (button_b) {
+  } else if (button_x) {
     wing.set(false);
   }
 }
@@ -120,7 +127,7 @@ void runDriver() {
     button_right_arrow = controller_1.ButtonRight.pressing();
 
     //drivesmoothing
-    DriveSmoothing();
+    DriveSmoothing(ch3,ch1);
 
     //default drive code 
     //driveChassis((ch3-ch1) * 0.12, (ch3+ch1) * 0.12);
@@ -144,8 +151,20 @@ void runPreAutonomous() {
     wait(10, msec);
   }
 
+  Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
+  Brain.Screen.printAt(5, 40, "Battery Percentage:");
+  Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
+  Brain.Screen.printAt(5, 80, "Chassis Heading Reading:");
   double current_heading = inertial_sensor.heading();
   Brain.Screen.print(current_heading);
+  Brain.Screen.printAt(5, 120, "Selected Auton:");
+  Brain.Screen.printAt(5, 140, "%i", auton_selected);
+  if(Brain.Screen.pressing()){
+      while(Brain.Screen.pressing()) {}
+      auton_selected ++;
+    } else if (auton_selected == 8){
+      auton_selected = 0;
+    }
   
   // odom tracking
   resetChassis();
@@ -158,4 +177,6 @@ void runPreAutonomous() {
   } else {
     thread odom = thread(trackNoOdomWheel);
   }
+
+  wait(10, msec);
 }

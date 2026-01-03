@@ -19,10 +19,9 @@ extern inertial inertial_sensor;
 extern rotation horizontal_tracker;
 extern rotation vertical_tracker;
 
-extern motor first_stage;
+extern motor intake;
 extern motor second_stage;
-extern motor_group intake;
-extern motor scoring;
+extern motor scoringM;
 
 extern digital_out wing;
 extern digital_out scraper;

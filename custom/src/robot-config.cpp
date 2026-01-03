@@ -16,38 +16,34 @@ controller controller_1 = controller(primary);
 // gearSetting is one of the following: ratio36_1(red), ratio18_1(green), ratio6_1(blue)
 // all chassis motors should be reversed appropriately so that they spin vertical when given a positive voltage input
 // such as driveChassis(12, 12)
-motor left_chassis1 = motor(PORT5, ratio6_1, true);
-motor left_chassis2 = motor(PORT6, ratio6_1, true);
-motor left_chassis3 = motor(PORT7, ratio6_1, false);
+motor left_chassis1 = motor(PORT6, ratio6_1, true);
+motor left_chassis2 = motor(PORT9, ratio6_1, true);
+motor left_chassis3 = motor(PORT8, ratio6_1, false);
 motor_group left_chassis = motor_group(left_chassis1, left_chassis2, left_chassis3);
 motor right_chassis1 = motor(PORT3, ratio6_1, false);
 motor right_chassis2 = motor(PORT4, ratio6_1, false);
-motor right_chassis3 = motor(PORT11, ratio6_1, true);
+motor right_chassis3 = motor(PORT5, ratio6_1, true);
 motor_group right_chassis = motor_group(right_chassis1, right_chassis2, right_chassis3);
 
-inertial inertial_sensor = inertial(PORT9);
-optical example_optical_sensor = optical(PORT10);
-distance example_distance_sensor = distance(PORT14);
-digital_out example_piston = digital_out(Brain.ThreeWirePort.A);
+inertial inertial_sensor = inertial(PORT15);
 
 // Format is rotation(port, reversed)
 // just set these to random ports if you don't use tracking wheels
-rotation horizontal_tracker = rotation(PORT13, true);
-rotation vertical_tracker = rotation(PORT19, true);
+rotation horizontal_tracker = rotation(PORT16, true);
+rotation vertical_tracker = rotation(PORT17, true);
 
 // game specific devices for high stakes
-motor first_stage = motor(PORT20, ratio6_1);
-motor second_stage = motor(PORT10, ratio6_1,true);
-motor_group intake(first_stage,second_stage);
-motor scoring = motor(PORT19, ratio18_1);
+motor intake = motor(PORT20, ratio6_1,true);
+motor second_stage = motor(PORT19, ratio18_1,true);
+motor scoringM = motor(PORT17, ratio18_1);
 
 
-digital_out wing = digital_out(Brain.ThreeWirePort.F);
-digital_out scraper = digital_out(Brain.ThreeWirePort.G);
+digital_out scraper = digital_out(Brain.ThreeWirePort.A);
+digital_out wing = digital_out(Brain.ThreeWirePort.B);
 
 
-optical optical_sensor = optical(PORT18);
-distance intake_distance = distance(PORT20);
+optical optical_sensor = optical(PORT14);
+distance intake_distance = distance(PORT13);
 //distance clamp_distance = distance(PORT12);
 
 //digital_out mogo_mech = digital_out(Brain.ThreeWirePort.E);
@@ -57,17 +53,17 @@ distance intake_distance = distance(PORT20);
 // ============================================================================
 
 // Distance between the middles of the left and right wheels of the drive (in inches)
-double distance_between_wheels = 13;
+double distance_between_wheels = 12;
 
 // motor to wheel gear ratio * wheel diameter (in inches) * pi
-double wheel_distance_in = (48.0 / 72.0) * 4 * M_PI;
+double wheel_distance_in = (48.0 / 72.0) * 3.87 * M_PI;
 
 // PID Constants for movement
 // distance_* : Linear PID for straight driving
 // turn_*     : PID for turning in place
 // heading_correction_* : PID for heading correction during linear movement
-double distance_kp = 1.1, distance_ki = 0.1, distance_kd = 7;
-double turn_kp = 0.3, turn_ki = 0, turn_kd = 2.5;
+double distance_kp = .9, distance_ki = 0.1, distance_kd = 7;
+double turn_kp = 0.365, turn_ki = 0, turn_kd = 1.2;
 double heading_correction_kp = 0.6, heading_correction_ki = 0, heading_correction_kd = 4;
 
 // Enable or disable the use of tracking wheels
