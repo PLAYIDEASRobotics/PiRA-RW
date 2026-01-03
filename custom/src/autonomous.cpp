@@ -79,6 +79,12 @@ void scoreMid(){
   scoringM.spin(fwd,1,volt);
 }
 
+void scoreLow(){
+  intake.spin(fwd,-12,volt);
+  second_stage.spin(fwd,-12,volt);
+  scoringM.spin(fwd,-12,volt);
+}
+
 void pauseIntake(){
   intake.stop();
   second_stage.stop();
@@ -112,6 +118,30 @@ void rightMatchload(){
   stopChassis(hold);                                    //hold position
 }
 
+void rightLowHigh(){
+  intakeBlocks();                                       //start intake
+  driveTo(15,2000);
+  turnToAngle(30,2000);
+  scraper.set(true);
+  driveTo(11,3000,true,3.5);
+  wait(500,msec);
+  scraper.set(false);
+  //driveTo(-4,3000,true,5);
+  turnToAngle(-45,2000);
+  driveTo(14,2000);
+  scoreLow();
+  wait(2000, msec);
+  driveTo(-47, 3000, true, 4);
+  turnToAngle(-180,1000);
+  scraper.set(true);
+  wait(500, msec);
+  intakeBlocks();
+  driveTo(10,1000);
+  wait(2500, msec);
+  driveTo(-22,2000);
+  scoreHigh();
+
+}
 
 void left4_5(){
   intakeBlocks();                                       //start intake

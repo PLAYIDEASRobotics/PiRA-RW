@@ -8,7 +8,7 @@ int auton_selected = 0;
 void runAutonomous() {
   switch(auton_selected) {
     case 0:
-      rightMatchload();
+      rightLowHigh();
       break;
     case 1:
       rightMatchload();

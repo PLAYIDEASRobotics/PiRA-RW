@@ -63,7 +63,7 @@ double wheel_distance_in = (48.0 / 72.0) * 3.87 * M_PI;
 // turn_*     : PID for turning in place
 // heading_correction_* : PID for heading correction during linear movement
 double distance_kp = .9, distance_ki = 0.1, distance_kd = 7;
-double turn_kp = 0.365, turn_ki = 0, turn_kd = 1.2;
+double turn_kp = 0.365, turn_ki = 0, turn_kd = 1.2; //.365 1.2
 double heading_correction_kp = 0.6, heading_correction_ki = 0, heading_correction_kd = 4;
 
 // Enable or disable the use of tracking wheels
