@@ -127,10 +127,10 @@ void runDriver() {
     button_right_arrow = controller_1.ButtonRight.pressing();
 
     //drivesmoothing
-    DriveSmoothing(ch3,ch1);
+    //DriveSmoothing(ch3,ch1);
 
     //default drive code 
-    //driveChassis((ch3-ch1) * 0.12, (ch3+ch1) * 0.12);
+    driveChassis((ch3-ch1) * 0.12, (ch3+ch1) * 0.12);
 
     intakeC();
     pistonCs();
@@ -151,7 +151,7 @@ void runPreAutonomous() {
     wait(10, msec);
   }
 
-  Brain.Screen.printAt(5, 20, "JAR Template v1.2.0");
+  Brain.Screen.printAt(5, 20, "PiRA-W");
   Brain.Screen.printAt(5, 40, "Battery Percentage:");
   Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
   Brain.Screen.printAt(5, 80, "Chassis Heading Reading:");
@@ -160,11 +160,11 @@ void runPreAutonomous() {
   Brain.Screen.printAt(5, 120, "Selected Auton:");
   Brain.Screen.printAt(5, 140, "%i", auton_selected);
   if(Brain.Screen.pressing()){
-      while(Brain.Screen.pressing()) {}
-      auton_selected ++;
-    } else if (auton_selected == 8){
-      auton_selected = 0;
-    }
+    while(Brain.Screen.pressing()) {}
+    auton_selected ++;
+  } else if (auton_selected == 8){
+    auton_selected = 0;
+  }
   
   // odom tracking
   resetChassis();

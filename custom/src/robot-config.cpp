@@ -56,7 +56,7 @@ distance intake_distance = distance(PORT13);
 double distance_between_wheels = 12;
 
 // motor to wheel gear ratio * wheel diameter (in inches) * pi
-double wheel_distance_in = (48.0 / 72.0) * 3.87 * M_PI;
+double wheel_distance_in = (48.0 / 72.0) * 3.87 * M_PI; //3.25 => 3.17
 
 // PID Constants for movement
 // distance_* : Linear PID for straight driving

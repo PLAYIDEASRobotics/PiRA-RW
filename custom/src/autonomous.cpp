@@ -97,14 +97,14 @@ void rightMatchload(){
   intakeBlocks();                                       //start intake
   boomerang(5.5,24,1,70,.3,3000);                       //move to collect 3 blocks
   scraper.set(true);                                    //open scraper
-  boomerang(37.5,-20,1,180,.3,3000);                        //move to matchloader
+  boomerang(37.5,-20,1,180,.3,3000);                    //move to matchloader
   
   //wait(3,sec);
 
   correct_angle = 180;
   driveTo(6,3000,true,6);                               //move forward to unload matchloader
   wait(1,sec);                                          //wait for blocks
-  moveToPoint(37.5,10,-1,3000);                           //move to long goal
+  moveToPoint(37.5,10,-1,3000);                         //move to long goal
   scraper.set(false);                                   //bring scraper up
   scoreHigh();                                          //score in long goal
   wait(2,sec);                                          //timer for scoring
@@ -143,7 +143,7 @@ void rightLowHigh(){
 
 }
 
-void left4_5(){
+void left4_3(){
   intakeBlocks();                                       //start intake
   boomerang(-1,31,1,-50,.3,3000,false);                 //move to collect 3 blocks
   scraper.set(true);                                    //open scraper to trap blocks
