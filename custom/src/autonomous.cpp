@@ -59,36 +59,36 @@ Start of Actual Autons
 
 void intakeBlocks(){
   intake.spin(fwd,12,volt);
-  second_stage.spin(fwd,1,volt);
-  scoringM.spin(fwd,1,volt);
+  intake2.spin(fwd,1,volt);
+  //scoringM.spin(fwd,1,volt);
 }
 
 void scoreHigh(){
   intake.spin(fwd,12,volt);
-  second_stage.spin(fwd,12,volt);
-  scoringM.spin(fwd,12,volt);
+  intake2.spin(fwd,12,volt);
+  //scoringM.spin(fwd,12,volt);
 }
 
 void scoreMid(){
   intake.spin(fwd,-6,volt);
-  second_stage.spin(fwd,-6,volt);
-  scoringM.spin(fwd,11,volt);
+  intake2.spin(fwd,-6,volt);
+  //scoringM.spin(fwd,11,volt);
   wait(200,msec);
   intake.spin(fwd,12,volt);
-  second_stage.spin(fwd,1,volt);
-  scoringM.spin(fwd,1,volt);
+  intake2.spin(fwd,1,volt);
+  //scoringM.spin(fwd,1,volt);
 }
 
 void scoreLow(){
   intake.spin(fwd,-12,volt);
-  second_stage.spin(fwd,-12,volt);
-  scoringM.spin(fwd,-12,volt);
+  intake2.spin(fwd,-12,volt);
+  //scoringM.spin(fwd,-12,volt);
 }
 
 void pauseIntake(){
   intake.stop();
-  second_stage.stop();
-  scoringM.stop();
+  intake2.stop();
+  //scoringM.stop();
 }
 
 

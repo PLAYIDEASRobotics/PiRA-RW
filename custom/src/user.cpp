@@ -57,24 +57,24 @@ void intakeC(){
   if (r1)
     {
       intake.spin(fwd,12,volt);
-      second_stage.spin(fwd,1,volt);
-      scoringM.spin(fwd,1,volt);
+      intake2.spin(fwd,1,volt);
+      //scoringM.spin(fwd,1,volt);
     } else if (r2) {
       intake.spin(fwd,-12,volt);
-      second_stage.spin(fwd,-12,volt);
-      scoringM.spin(fwd,-12,volt);
+      intake2.spin(fwd,-12,volt);
+      //scoringM.spin(fwd,-12,volt);
     } else if (l1) {
       intake.spin(fwd,12,volt);
-      second_stage.spin(fwd,12,volt);
-      scoringM.spin(fwd,12,volt);
+      intake2.spin(fwd,12,volt);
+      //scoringM.spin(fwd,12,volt);
     } else if (l2) {
       intake.spin(fwd,12,volt);
-      second_stage.spin(fwd,12,volt);
-      scoringM.spin(fwd,-8,volt);
+      intake2.spin(fwd,12,volt);
+      //scoringM.spin(fwd,-8,volt);
     } else {
       intake.stop();
-      second_stage.stop();
-      scoringM.stop();
+      intake2.stop();
+      //scoringM.stop();
     }
 }
 
@@ -95,9 +95,9 @@ void pistonCs(){
   }
 
   if (button_b) {
-    wing.set(true);
+    lift.set(true);
   } else if (button_x) {
-    wing.set(false);
+    lift.set(false);
   }
 }
 
@@ -127,10 +127,10 @@ void runDriver() {
     button_right_arrow = controller_1.ButtonRight.pressing();
 
     //drivesmoothing
-    //DriveSmoothing(ch3,ch1);
+    DriveSmoothing(ch3,ch1);
 
     //default drive code 
-    driveChassis((ch3-ch1) * 0.12, (ch3+ch1) * 0.12);
+    //driveChassis((ch3-ch1) * 0.12, (ch3+ch1) * 0.12);
 
     intakeC();
     pistonCs();

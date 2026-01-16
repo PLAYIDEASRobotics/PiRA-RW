@@ -16,16 +16,16 @@ controller controller_1 = controller(primary);
 // gearSetting is one of the following: ratio36_1(red), ratio18_1(green), ratio6_1(blue)
 // all chassis motors should be reversed appropriately so that they spin vertical when given a positive voltage input
 // such as driveChassis(12, 12)
-motor left_chassis1 = motor(PORT6, ratio6_1, true);
-motor left_chassis2 = motor(PORT9, ratio6_1, true);
-motor left_chassis3 = motor(PORT8, ratio6_1, false);
+motor left_chassis1 = motor(PORT9, ratio6_1, false);
+motor left_chassis2 = motor(PORT10, ratio6_1, false);
+motor left_chassis3 = motor(PORT8, ratio6_1, true);
 motor_group left_chassis = motor_group(left_chassis1, left_chassis2, left_chassis3);
-motor right_chassis1 = motor(PORT3, ratio6_1, false);
-motor right_chassis2 = motor(PORT4, ratio6_1, false);
-motor right_chassis3 = motor(PORT5, ratio6_1, true);
+motor right_chassis1 = motor(PORT2, ratio6_1, true);
+motor right_chassis2 = motor(PORT1, ratio6_1, true);
+motor right_chassis3 = motor(PORT3, ratio6_1, false);
 motor_group right_chassis = motor_group(right_chassis1, right_chassis2, right_chassis3);
 
-inertial inertial_sensor = inertial(PORT15);
+inertial inertial_sensor = inertial(PORT20);
 
 // Format is rotation(port, reversed)
 // just set these to random ports if you don't use tracking wheels
@@ -33,11 +33,10 @@ rotation horizontal_tracker = rotation(PORT16, true);
 rotation vertical_tracker = rotation(PORT17, true);
 
 // game specific devices for high stakes
-motor intake = motor(PORT20, ratio6_1,true);
-motor second_stage = motor(PORT19, ratio18_1,true);
-motor scoringM = motor(PORT17, ratio18_1);
+motor intake = motor(PORT11, ratio6_1,false);
+motor intake2 = motor(PORT19, ratio6_1,true); //true
 
-
+digital_out lift = digital_out(Brain.ThreeWirePort.E);
 digital_out scraper = digital_out(Brain.ThreeWirePort.A);
 digital_out wing = digital_out(Brain.ThreeWirePort.B);
 
@@ -53,17 +52,17 @@ distance intake_distance = distance(PORT13);
 // ============================================================================
 
 // Distance between the middles of the left and right wheels of the drive (in inches)
-double distance_between_wheels = 12;
+double distance_between_wheels = 11;
 
 // motor to wheel gear ratio * wheel diameter (in inches) * pi
-double wheel_distance_in = (48.0 / 72.0) * 3.87 * M_PI; //3.25 => 3.17
+double wheel_distance_in = (36.0 / 48.0) * 3.17 * M_PI; //3.25 => 3.17
 
 // PID Constants for movement
 // distance_* : Linear PID for straight driving
 // turn_*     : PID for turning in place
 // heading_correction_* : PID for heading correction during linear movement
-double distance_kp = .9, distance_ki = 0.1, distance_kd = 7;
-double turn_kp = 0.365, turn_ki = 0, turn_kd = 1.2; //.365 1.2
+double distance_kp = .8, distance_ki = 0.1, distance_kd = 7; //.9 7
+double turn_kp = 0.35, turn_ki = 0, turn_kd = 1.2; //.365 1.2
 double heading_correction_kp = 0.6, heading_correction_ki = 0, heading_correction_kd = 4;
 
 // Enable or disable the use of tracking wheels

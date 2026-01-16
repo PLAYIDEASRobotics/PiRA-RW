@@ -20,11 +20,12 @@ extern rotation horizontal_tracker;
 extern rotation vertical_tracker;
 
 extern motor intake;
-extern motor second_stage;
-extern motor scoringM;
+extern motor intake2;
+//extern motor scoringM;
 
 extern digital_out wing;
 extern digital_out scraper;
+extern digital_out lift;
 
 extern optical optical_sensor;
 extern distance intake_distance;
