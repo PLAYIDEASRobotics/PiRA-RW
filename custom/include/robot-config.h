@@ -19,6 +19,11 @@ extern inertial inertial_sensor;
 extern rotation horizontal_tracker;
 extern rotation vertical_tracker;
 
+extern distance front_sensor;
+extern distance left_sensor;
+extern distance right_sensor;
+extern distance back_sensor;
+
 extern motor intake;
 extern motor intake2;
 //extern motor scoringM;
@@ -46,6 +51,13 @@ extern double vertical_tracker_dist_from_center;
 extern double horizontal_tracker_diameter;
 extern double vertical_tracker_diameter;
 
+// Distance Reset setup 
+extern double front_sensor_offset;
+extern double left_sensor_offset;
+extern double right_sensor_offset;
+extern double back_sensor_offset;
+
+// Advanced Tuning Parameters
 extern bool heading_correction;
 extern bool dir_change_start;
 extern bool dir_change_end;
