@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
-/*    Author:       Richard Wang (1698V)                                      */
+/*    Author:       PiRA (2498, 2502)                                         */
 /*    Created:      July 9, 2023                                              */
 /*    Description:  Competition Template                                      */
 /*                                                                            */
@@ -41,8 +41,7 @@ void pre_auton(void) {
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*                                                                           */
-/*-------------------------------
---------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
   runAutonomous();

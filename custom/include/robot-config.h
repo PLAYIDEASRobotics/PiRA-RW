@@ -34,8 +34,6 @@ extern digital_out lift;
 
 extern optical optical_sensor;
 extern distance intake_distance;
-//extern distance clamp_distance;
-//extern digital_out mogo_mech;
 
 // USER-CONFIGURABLE PARAMETERS (CHANGE BEFORE USING THIS TEMPLATE)
 extern double distance_between_wheels;

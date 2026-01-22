@@ -4,14 +4,33 @@ using namespace vex;
 using signature = vision::signature;
 using code = vision::code;
 
+
+/*===========================================================================*/
+/*                                 IMPORTANT                                 */
+/*                                                                           */
+/*  Reading and Reading Comprehension is extremely important when using      */
+/*  a template, failure will result in errors                                */
+/*                                                                           */
+/*===========================================================================*/
+
 // A global instance of brain used for printing to the V5 Brain screen
 brain  Brain;
 
 // VEXcode device constructors
 controller controller_1 = controller(primary);
 
-// IMPORTANT: Remember to modify the example motors according to the guide. 
-// Also remember to add respective device declarations to custom/include/robot-config.h
+
+/*===========================================================================*/
+/*                              Chassis Set Up                               */
+/*                                                                           */
+/*  Remember to modify the example motors according to the guide.            */
+/*  The device names in the following section should not be modified         */
+/*                                                                           */
+/*  Please add non movement related motors, solenoids, and sensors in the    */
+/*  next section                                                             */
+/*                                                                           */
+/*===========================================================================*/
+
 // Format: motor(port, gearSetting, reversed)
 // gearSetting is one of the following: ratio36_1(red), ratio18_1(green), ratio6_1(blue)
 // all chassis motors should be reversed appropriately so that they spin vertical when given a positive voltage input
@@ -39,6 +58,17 @@ distance left_sensor = distance(PORT13);
 distance right_sensor = distance(PORT14);
 distance back_sensor = distance(PORT15);
 
+
+/*===========================================================================*/
+/*                            Non Chassis Devices                            */
+/*                                                                           */
+/*  Also remember to add respective device declarations to                   */
+/*  custom/include/robot-config.h                                            */
+/*                                                                           */
+/*  This is for all additional devices                                       */
+/*                                                                           */
+/*===========================================================================*/
+
 // game specific devices for high stakes
 motor intake = motor(PORT11, ratio6_1,false);
 motor intake2 = motor(PORT19, ratio6_1,true); //true
@@ -50,13 +80,16 @@ digital_out wing = digital_out(Brain.ThreeWirePort.B);
 
 optical optical_sensor = optical(PORT14);
 distance intake_distance = distance(PORT13);
-//distance clamp_distance = distance(PORT12);
 
-//digital_out mogo_mech = digital_out(Brain.ThreeWirePort.E);
 
-// ============================================================================
-// USER-CONFIGURABLE PARAMETERS (CHANGE BEFORE USING THIS TEMPLATE)
-// ============================================================================
+/*===========================================================================*/
+/*                       USER-CONFIGURABLE PARAMETERS                        */
+/*                                                                           */
+/*  PLEASE CHANGE BEFORE USING THE TEMPLATE                                  */
+/*                                                                           */
+/*  Tuning for PID, ODOM, and Distance Sensor Based Coordinate Reseting      */
+/*                                                                           */
+/*===========================================================================*/
 
 // Distance between the middles of the left and right wheels of the drive (in inches)
 double distance_between_wheels = 11;
@@ -99,9 +132,12 @@ double left_sensor_offset = 0.0;
 double right_sensor_offset = 0.0;
 double back_sensor_offset = 0.0;
 
-// ============================================================================
-// ADVANCED TUNING (OPTIONAL)
-// ============================================================================
+
+/*===========================================================================*/
+/*                                                                           */
+/*                  ADVANCED TUNING (COMPLETELY OPTIONAL)                    */
+/*                                                                           */
+/*===========================================================================*/
 
 bool heading_correction = true; // Use heading correction when the bot is stationary
 
@@ -122,9 +158,12 @@ double max_slew_decel_rev = 24;
 // Increase for more speed during boomerang
 double chase_power = 2;
 
-// ============================================================================
-// DO NOT CHANGE ANYTHING BELOW
-// ============================================================================
+
+/*===========================================================================*/
+/*                                                                           */
+/*                            DO NOT TOUCH BELOW                             */
+/*                                                                           */
+/*===========================================================================*/
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
