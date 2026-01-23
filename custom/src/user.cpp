@@ -3,9 +3,14 @@
 #include "drivesmoothing.h"
 #include "../custom/include/autonomous.h"
 
+
+bool auto_started = false;
 // Modify autonomous, driver, or pre-auton code below
 int auton_selected = 0;
 void runAutonomous() {
+  Brain.Screen.clearScreen();
+  Brain.Screen.printAt(5, 20, "running auton: %d", auton_selected);
+  auto_started = true;
   switch(auton_selected) {
     case 0:
       rightLowHigh();
@@ -139,6 +144,8 @@ void runDriver() {
   }
 }
 
+
+
 void runPreAutonomous() {
     // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
@@ -151,21 +158,6 @@ void runPreAutonomous() {
     wait(10, msec);
   }
 
-  Brain.Screen.printAt(5, 20, "PiRA-W");
-  Brain.Screen.printAt(5, 40, "Battery Percentage:");
-  Brain.Screen.printAt(5, 60, "%d", Brain.Battery.capacity());
-  Brain.Screen.printAt(5, 80, "Chassis Heading Reading:");
-  double current_heading = inertial_sensor.heading();
-  Brain.Screen.print(current_heading);
-  Brain.Screen.printAt(5, 120, "Selected Auton:");
-  Brain.Screen.printAt(5, 140, "%i", auton_selected);
-  if(Brain.Screen.pressing()){
-    while(Brain.Screen.pressing()) {}
-    auton_selected ++;
-  } else if (auton_selected == 8){
-    auton_selected = 0;
-  }
-  
   // odom tracking
   resetChassis();
   if(using_horizontal_tracker && using_vertical_tracker) {
@@ -177,6 +169,22 @@ void runPreAutonomous() {
   } else {
     thread odom = thread(trackNoOdomWheel);
   }
-
-  wait(10, msec);
+  while(!auto_started){
+    Brain.Screen.printAt(5, 20, "PiRA-RW");
+    Brain.Screen.printAt(5, 50, "Battery Percentage:");
+    Brain.Screen.printAt(5, 70, "%d", Brain.Battery.capacity());
+    Brain.Screen.printAt(5, 90, "Chassis Heading Reading:");
+    double current_heading = inertial_sensor.heading();
+    Brain.Screen.printAt(5, 110, "%d", current_heading);
+    Brain.Screen.printAt(5, 130, "Selected Auton:");
+    Brain.Screen.printAt(5, 150, "%d", auton_selected);
+    printf("%d",auton_selected);
+    if(Brain.Screen.pressing()){
+      while(Brain.Screen.pressing()) {}
+      auton_selected++;
+    } else if (auton_selected == 8){
+      auton_selected = 0;
+    }
+    wait(10, msec);
+  }
 }

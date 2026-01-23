@@ -1,5 +1,5 @@
 #include "vex.h"
-#include "..\include\lowpass.h"
+#include "../include/lowpass.h"
 //////////////////////// DRIVE SMOOTHING CODE DO NOT REMOVE DOES NOT NEED TO BE USED//////////////////////
 //////////////////////// DRIVE SMOOTHING CODE DO NOT REMOVE DOES NOT NEED TO BE USED//////////////////////
 //////////////////////// DRIVE SMOOTHING CODE DO NOT REMOVE DOES NOT NEED TO BE USED//////////////////////
